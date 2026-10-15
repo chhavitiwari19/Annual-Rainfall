@@ -41,20 +41,6 @@ oct_dec = st.number_input(
     value=100.0
 )
 
-if st.button("Predict Annual Rainfall"):
-    input_data = np.array([[
-        jan_feb,
-        mar_may,
-        jun_sep,
-        oct_dec
-    ]])
-
-    prediction = model.predict(input_data)
-
-    st.success(
-        f"Predicted Annual Rainfall: {prediction[0]:.2f} mm"
-    )
-
 # Predict rainfall
 if st.button("Predict Rainfall"):
     input_data = np.array([[day, pressure, maxtemp, humidity]])
