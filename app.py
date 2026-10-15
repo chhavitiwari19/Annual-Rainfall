@@ -1,16 +1,20 @@
 import streamlit as st
-import pickle
+import joblib
 import numpy as np
-
-# Load the trained rainfall prediction model
-with open("Predicted Annual Rainfall.pkl", "rb") as file:
-    model = pickle.load(file)
 
 # App title
 st.title("🌧️ Annual Rainfall Prediction")
 st.write("Predict annual rainfall using Machine Learning.")
 
-# User input
+# Load the trained model
+try:
+    model = joblib.load("Predicted Annual Rainfall.pkl")
+    st.success("Rainfall model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    st.stop()
+
+# User inputs
 st.subheader("Enter Weather Details")
 
 temperature = st.number_input(
@@ -27,16 +31,14 @@ humidity = st.number_input(
     value=60.0
 )
 
-# Prediction button
+# Predict rainfall
 if st.button("Predict Rainfall"):
-
-    # Prepare input for the model
     input_data = np.array([[temperature, humidity]])
 
-    # Predict
-    prediction = model.predict(input_data)
-
-    # Display result
-    st.success(
-        f"Predicted Annual Rainfall: {prediction[0]:.2f}"
-    )
+    try:
+        prediction = model.predict(input_data)
+        st.success(
+            f"Predicted Annual Rainfall: {prediction[0]:.2f}"
+        )
+    except Exception as e:
+        st.error(f"Prediction error: {e}")
