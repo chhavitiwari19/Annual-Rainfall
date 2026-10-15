@@ -15,17 +15,45 @@ except Exception as e:
     st.stop()
 
 # User inputs
-st.subheader("Enter Weather Details")
+st.subheader("Enter Seasonal Rainfall Details")
 
-day = st.number_input("Day", min_value=1, max_value=31, value=15)
-pressure = st.number_input("Pressure", value=1010.0)
-maxtemp = st.number_input("Maximum Temperature", value=30.0)
-humidity = st.number_input(
-    "Humidity (%)",
+jan_feb = st.number_input(
+    "January-February Rainfall (mm)",
     min_value=0.0,
-    max_value=100.0,
-    value=60.0
+    value=50.0
 )
+
+mar_may = st.number_input(
+    "March-May Rainfall (mm)",
+    min_value=0.0,
+    value=100.0
+)
+
+jun_sep = st.number_input(
+    "June-September Rainfall (mm)",
+    min_value=0.0,
+    value=500.0
+)
+
+oct_dec = st.number_input(
+    "October-December Rainfall (mm)",
+    min_value=0.0,
+    value=100.0
+)
+
+if st.button("Predict Annual Rainfall"):
+    input_data = np.array([[
+        jan_feb,
+        mar_may,
+        jun_sep,
+        oct_dec
+    ]])
+
+    prediction = model.predict(input_data)
+
+    st.success(
+        f"Predicted Annual Rainfall: {prediction[0]:.2f} mm"
+    )
 
 # Predict rainfall
 if st.button("Predict Rainfall"):
