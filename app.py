@@ -17,19 +17,21 @@ except Exception as e:
 # User inputs
 st.subheader("Enter Weather Details")
 
-temperature = st.number_input(
-    "Average Temperature",
-    min_value=0.0,
-    max_value=60.0,
-    value=25.0
-)
-
+day = st.number_input("Day", min_value=1, max_value=31, value=15)
+pressure = st.number_input("Pressure", value=1010.0)
+maxtemp = st.number_input("Maximum Temperature", value=30.0)
 humidity = st.number_input(
-    "Average Humidity (%)",
+    "Humidity (%)",
     min_value=0.0,
     max_value=100.0,
     value=60.0
 )
+
+# Predict rainfall
+if st.button("Predict Rainfall"):
+    input_data = np.array([[day, pressure, maxtemp, humidity]])
+    prediction = model.predict(input_data)
+    st.success(f"Predicted Annual Rainfall: {prediction[0]:.2f}")
 
 # Predict rainfall
 if st.button("Predict Rainfall"):
