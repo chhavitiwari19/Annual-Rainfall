@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import pickle
 import numpy as np
@@ -41,4 +40,3 @@ if st.button("Predict Rainfall"):
     st.success(
         f"Predicted Annual Rainfall: {prediction[0]:.2f}"
     )
-```
