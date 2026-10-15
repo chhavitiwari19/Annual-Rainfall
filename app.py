@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import numpy as np
 
-st.title("Annual Rainfall Prediction")
+st.title("🌧️Annual Rainfall Prediction")
 st.write("Predict annual rainfall using seasonal rainfall data.")
 
 # Load the trained model
