@@ -15,10 +15,10 @@ except Exception as e:
 # Input features
 st.subheader("Enter Seasonal Rainfall Details")
 
-jan_feb = st.number_input("January-February Rainfall (day)", min_value=0.0, value=50.0)
-mar_may = st.number_input("March-May Rainfall (day)", min_value=0.0, value=100.0)
-jun_sep = st.number_input("June-September Rainfall (day)", min_value=0.0, value=500.0)
-oct_dec = st.number_input("October-December Rainfall (day)", min_value=0.0, value=100.0)
+jan_feb = st.number_input("January-February Rainfall (mm)", min_value=0.0, value=50.0)
+mar_may = st.number_input("March-May Rainfall (mm)", min_value=0.0, value=100.0)
+jun_sep = st.number_input("June-September Rainfall (mm)", min_value=0.0, value=500.0)
+oct_dec = st.number_input("October-December Rainfall (mm)", min_value=0.0, value=100.0)
 
 if st.button("Predict Annual Rainfall"):
     input_data = np.array([[
